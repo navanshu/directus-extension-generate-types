@@ -3,7 +3,7 @@ import { getCollections } from "../api";
 export default async function generatePyTypes(api) {
   const collections = await getCollections(api);
   let ret = "";
-  const types = [];
+  const types: string[] = [];
 
   ret += `from typing import TypedDict\n\n`;
 

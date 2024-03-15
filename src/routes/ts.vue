@@ -33,12 +33,11 @@
     </div>
   </private-view>
 </template>
-
 <script lang="ts">
 import NavbarComponent from "../components/navigation.vue";
 import CodeComponent from "../components/code.vue";
-import generateTsTypes from "lib/generateTypes/ts";
-import languages from "lib/languages";
+import generateTsTypes from "../lib/generateTypes/ts";
+import languages from "../lib/languages";
 
 export default {
   components: { NavbarComponent, CodeComponent },
@@ -72,6 +71,7 @@ export default {
       generateTsTypes(this.api, this.useIntersectionTypes, this.sdk11).then((types) => {
         this.types = types;
         this.loading = false;
+
       });
     },
     exampleCode() {
@@ -82,7 +82,7 @@ import { CustomDirectusTypes } from "./types";
 const client = createDirectus<CustomDirectusTypes>("<directus url>").with(rest());` : `import { Directus } from "@directus/sdk";
 import { CustomDirectusTypes } from "./types";
 
-const directus = new Directus<CustomDirectusTypes>("<directus url>");`
+const directus = new Directus<CustomDirectusTypes>("<directus url>");`;
     }
   },
   mounted() {
@@ -90,7 +90,6 @@ const directus = new Directus<CustomDirectusTypes>("<directus url>");`
   },
 };
 </script>
-
 <style scoped>
 .page {
   padding: 0 var(--content-padding);

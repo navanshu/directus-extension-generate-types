@@ -1,4 +1,4 @@
-import type { Collections, Field } from "lib/types";
+import type { Collections, Field } from "./types";
 import {
   Collection as DirectusCollection,
   Relation,

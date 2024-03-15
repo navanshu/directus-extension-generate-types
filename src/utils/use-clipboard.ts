@@ -9,7 +9,6 @@
  */
 
 import { computed } from "vue";
-import { useI18n } from "vue-i18n";
 
 type Message = {
   success?: string;
@@ -17,7 +16,6 @@ type Message = {
 };
 
 export function useClipboard() {
-  const { t } = useI18n();
 
   const isCopySupported = computed(() => {
     return !!navigator?.clipboard?.writeText;
@@ -42,13 +40,13 @@ export function useClipboard() {
     try {
       await navigator?.clipboard?.writeText(value);
       notificationStore.add({
-        title: message?.success ?? t("copy_raw_value_success"),
+        title: message?.success ?? ("copy_raw_value_success"),
       });
       return true;
     } catch (err: any) {
       notificationStore.add({
         type: "error",
-        title: message?.fail ?? t("copy_raw_value_fail"),
+        title: message?.fail ?? ("copy_raw_value_fail"),
       });
       return false;
     }
@@ -61,13 +59,13 @@ export function useClipboard() {
     try {
       const pasteValue = await navigator?.clipboard?.readText();
       notificationStore.add({
-        title: message?.success ?? t("paste_raw_value_success"),
+        title: message?.success ?? ("paste_raw_value_success"),
       });
       return pasteValue;
     } catch (err: any) {
       notificationStore.add({
         type: "error",
-        title: message?.fail ?? t("paste_raw_value_fail"),
+        title: message?.fail ?? ("paste_raw_value_fail"),
       });
       return null;
     }
